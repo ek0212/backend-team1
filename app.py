@@ -38,7 +38,7 @@ def home():
 	return render_template("index.html")
 
 
-@app.route("/stylize", methods=['POST'])
+@app.route("/stylize", methods=['GET','POST'])
 def upload_file():
 	print("Hi from stylize")
 	content = request.files['image']
@@ -61,7 +61,7 @@ def upload_file():
 	plt.imsave(app.config['UPLOAD_FOLDER']+'/result.png',x)
 	return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
 
-@app.route('/result')
+@app.route('/result', methods=['GET','POST'])
 def get_res():
 	print("Hi from result")
 	return send_from_directory(app.config["UPLOAD_FOLDER"], "result.png", mimetype='image/png')
