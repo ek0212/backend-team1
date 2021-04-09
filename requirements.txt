@@ -1,5 +1,5 @@
 -f https://download.pytorch.org/whl/torch_stable.html
-python==3.7.19
+python==3.7.10
 requests
 flask
 matplotlib
