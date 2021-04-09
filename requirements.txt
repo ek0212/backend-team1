@@ -1,9 +1,8 @@
-python==3.7.10
 requests
-flask
-matplotlib
-numpy
+Flask
 gunicorn
 -f https://download.pytorch.org/whl/torch_stable.html
-torch==1.8.1+cpu 
-torchvision==0.9.1+cpu
+torch ==1.6.0+cpu
+-f https://download.pytorch.org/whl/torch_stable.html 
+torchvision==0.7.0+cpu
+pygithub
