@@ -8,8 +8,6 @@ requests = "*"
 flask = "*"
 matplotlib = "*"
 numpy = "*"
-torch = "*"
-torchvision = "*"
 gunicorn = "*"
 
 [dev-packages]
