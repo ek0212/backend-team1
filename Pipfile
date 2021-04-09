@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+python = "==3.7.10"
+requests = "*"
+matplotlib = "*"
+numpy = "*"
+gunicorn = "*"
+torch = "==1.8.1+cpu"
+torchvision = "==0.9.1+cpu"
+Flask = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
