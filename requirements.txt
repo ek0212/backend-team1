@@ -8,4 +8,3 @@ torch ==1.6.0+cpu
 torchvision==0.7.0+cpu
 pygithub
 -f https://download.pytorch.org/models/vgg19-dcbb9e9d.pth
-vgg19

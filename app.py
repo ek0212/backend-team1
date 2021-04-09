@@ -2,8 +2,7 @@ from flask import Flask , render_template ,request
 import os
 import matplotlib.pyplot as plt
 from style_transfer import *
-from flask import send_from_directory
-
+from flask import send_file
 
 app = Flask(__name__)
 UPLOAD_FOLDER = './static/image/upload'
