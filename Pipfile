@@ -9,8 +9,8 @@ flask = "*"
 matplotlib = "*"
 numpy = "*"
 gunicorn = "*"
-torch = {version = "==1.6.0", file = "https://download.pytorch.org/whl/cpu/torch-1.6.0-cp38-none-macosx_10_9_x86_64.whl"}
-torchvision = {version = "==0.7.0", file = "https://download.pytorch.org/whl/torchvision-0.7.0-cp38-cp38-macosx_10_9_x86_64.whl"}
+torch = {version = "==1.8.1", file = "https://download.pytorch.org/whl/cpu/torch-1.8.1-cp39-none-macosx_10_9_x86_64.whl"}
+torchvision = {version = "==0.9.1", file = "https://download.pytorch.org/whl/torchvision-0.9.1-cp37-cp37m-macosx_10_9_x86_64.whl"}
 
 [dev-packages]
 
