@@ -3,6 +3,7 @@ import os
 import matplotlib.pyplot as plt
 from style_transfer import *
 from flask import send_file
+from flask_cors import CORS
 
 app = Flask(__name__)
 UPLOAD_FOLDER = './static/image/upload'
@@ -13,7 +14,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 # from flask_ngrok import run_with_ngrok
 # from flask import Flask
 # app = Flask(__name__)
-# cors = CORS(app)
+cors = CORS(app)
 # run_with_ngrok(app)
 
 # @app.route("/")
@@ -60,7 +61,7 @@ def upload_file():
 	plt.imsave(app.config['UPLOAD_FOLDER']+'/result.png',x)
 	return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
 
-@app.route('/result', methods=['GET','POST'])
+@app.route('/result')
 def get_res():
 	print("Hi from result")
 	return send_from_directory(app.config["UPLOAD_FOLDER"], "result.png", mimetype='image/png')
