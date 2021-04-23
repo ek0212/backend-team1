@@ -68,8 +68,10 @@ def upload_file():
 @app.route('/result')
 def get_res():
 	print("Hi from result")
-	return send_from_directory(app.config["UPLOAD_FOLDER"], "result.png", mimetype='image/png')
-							
+	if check_image('./static/image/upload/'+content.filename):
+		return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
+	else:
+		return send_from_directory(app.config['UPLOAD_FOLDER'], "error.png", mimetype='image/png')
 
 if __name__ =="__main__":
 	app.run(host='0.0.0.0', port=5000, debug=True)
