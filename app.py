@@ -48,19 +48,23 @@ def upload_file():
 		print("No style choice was given")
 	
 	content.save(os.path.join(app.config['UPLOAD_FOLDER'], content.filename))
-	#load in content and style image
-	content = load_image('./static/image/upload/'+content.filename)
-	#Resize style to match content, makes code easier
-	style = load_image('./static/image/'+ style+'.jpg', shape=content.shape[-2:])
+	#check image size
+	if check_image('./static/image/upload/'+content.filename):
+		#load in content and style image
+		content = load_image('./static/image/upload/'+content.filename)
+		#Resize style to match content, makes code easier
+		style = load_image('./static/image/'+ style+'.jpg', shape=content.shape[-2:])
 
-	vgg = model()
-	target = stylize(content,style,vgg)
-	x = im_convert(target)
+		vgg = model()
+		target = stylize(content,style,vgg)
+		x = im_convert(target)
 
-	# app.config['UPLOAD_FOLDER'] would need to be a path to Upload_folder for send_from_directory to work
-	plt.imsave(app.config['UPLOAD_FOLDER']+'/result.png',x)
-	return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
-
+		# app.config['UPLOAD_FOLDER'] would need to be a path to Upload_folder for send_from_directory to work
+		plt.imsave(app.config['UPLOAD_FOLDER']+'/result.png',x)
+		return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
+	else: 
+		print("Image too large, try again.")
+		
 @app.route('/result')
 def get_res():
 	print("Hi from result")

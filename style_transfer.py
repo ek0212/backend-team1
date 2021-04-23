@@ -25,6 +25,13 @@ def model():
  
   return vgg
 
+def check_image(img_path, max_size=400, shape=None):
+    image = Image.open(img_path).convert('RGB')
+    if max(image.size) > max_size:
+        return False
+    else: 
+        return True 
+        
 def load_image(img_path, max_size=400, shape=None):
     ''' Load in and transform an image, making sure the image
        is <= 400 pixels in the x-y dims.'''
@@ -32,11 +39,12 @@ def load_image(img_path, max_size=400, shape=None):
     image = Image.open(img_path).convert('RGB')
     
     # large images will slow down processing
-    if max(image.size) > max_size:
-        size = max_size
-    else:
-        size = max(image.size)
-    
+    # if max(image.size) > max_size:
+    #     size = max_size
+    # else:
+    #     size = max(image.size)
+    size = max(image.size)
+
     if shape is not None:
         size = shape
         
