@@ -47,32 +47,25 @@ def upload_file():
 	if (style == ''):
 		print("No style choice was given")
 	
-	#check image size
-	if check_image('./static/image/upload/'+content.filename):
-		content.save(os.path.join(app.config['UPLOAD_FOLDER'], content.filename))
-		#load in content and style image
-		content = load_image('./static/image/upload/'+content.filename)
-		#Resize style to match content, makes code easier
-		style = load_image('./static/image/'+ style+'.jpg', shape=content.shape[-2:])
+	content.save(os.path.join(app.config['UPLOAD_FOLDER'], content.filename))
+	#load in content and style image
+	content = load_image('./static/image/upload/'+content.filename)
+	#Resize style to match content, makes code easier
+	style = load_image('./static/image/'+ style+'.jpg', shape=content.shape[-2:])
 
-		vgg = model()
-		target = stylize(content,style,vgg)
-		x = im_convert(target)
+	vgg = model()
+	target = stylize(content,style,vgg)
+	x = im_convert(target)
 
-		# app.config['UPLOAD_FOLDER'] would need to be a path to Upload_folder for send_from_directory to work
-		plt.imsave(app.config['UPLOAD_FOLDER']+'/result.png',x)
-		return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
-	else:
-		return send_from_directory(app.config['UPLOAD_FOLDER'], "error.png", mimetype='image/png')
+	# app.config['UPLOAD_FOLDER'] would need to be a path to Upload_folder for send_from_directory to work
+	plt.imsave(app.config['UPLOAD_FOLDER']+'/result.png',x)
+	return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
 
 @app.route('/result')
 def get_res():
 	print("Hi from result")
-	content = request.files['image']
-	if check_image('./static/image/upload/'+content.filename):
-		return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
-	else:
-		return send_from_directory(app.config['UPLOAD_FOLDER'], "error.png", mimetype='image/png')
+	return send_from_directory(app.config["UPLOAD_FOLDER"], "result.png", mimetype='image/png')
+							
 
 if __name__ =="__main__":
 	app.run(host='0.0.0.0', port=5000, debug=True)

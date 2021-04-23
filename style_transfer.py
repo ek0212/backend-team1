@@ -25,12 +25,12 @@ def model():
  
   return vgg
 
-def check_image(img_path, max_size=400, shape=None):
-    image = Image.open(img_path).convert('RGB')
-    if max(image.size) > max_size:
-        return False
-    else: 
-        return True 
+# def check_image(img_path, max_size=400, shape=None):
+#     image = Image.open(img_path).convert('RGB')
+#     if max(image.size) > max_size:
+#         return False
+#     else: 
+#         return True 
 
 def load_image(img_path, max_size=400, shape=None):
     ''' Load in and transform an image, making sure the image
