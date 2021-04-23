@@ -47,9 +47,9 @@ def upload_file():
 	if (style == ''):
 		print("No style choice was given")
 	
-	content.save(os.path.join(app.config['UPLOAD_FOLDER'], content.filename))
 	#check image size
 	if check_image('./static/image/upload/'+content.filename):
+		content.save(os.path.join(app.config['UPLOAD_FOLDER'], content.filename))
 		#load in content and style image
 		content = load_image('./static/image/upload/'+content.filename)
 		#Resize style to match content, makes code easier
@@ -68,6 +68,7 @@ def upload_file():
 @app.route('/result')
 def get_res():
 	print("Hi from result")
+	content = request.files['image']
 	if check_image('./static/image/upload/'+content.filename):
 		return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
 	else:
