@@ -38,7 +38,7 @@ def upload_file():
 	x = im_convert(target)
 	
 	image = Image.fromarray(x)
-    image.save("result.jpg")
+	image.save("result.jpg")
 	return send_file("result.jpg", mimetype='image/jpg')
 
 @app.route('/result')
