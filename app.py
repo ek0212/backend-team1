@@ -36,14 +36,15 @@ def upload_file():
 	vgg = model()
 	target = stylize(content,style,vgg)
 	x = im_convert(target)
-
-	plt.imsave('result.png',x)
-	return send_file("result.png", mimetype='image/jpg')
+	
+	image = Image.fromarray(x)
+    image.save("result.jpg")
+	return send_file("result.jpg", mimetype='image/jpg')
 
 @app.route('/result')
 def get_res():
 	print("Hi from result") #sanity check
-	return send_file("result.png", mimetype='image/jpg')
+	return send_file("result.jpg", mimetype='image/jpg')
 							
 
 if __name__ =="__main__":
