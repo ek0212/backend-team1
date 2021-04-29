@@ -100,8 +100,8 @@ def gram_matrix(tensor):
     
     return gram
 
-# set num_iterations to 250
-def stylize(content,style,model,num_iterations=250):
+# set num_iterations to 125
+def stylize(content,style,model,num_iterations=125):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # load in content and style image
     content = content.to(device)
