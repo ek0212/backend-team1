@@ -37,8 +37,8 @@ def upload_file():
 	target = stylize(content,style,vgg)
 	x = im_convert(target)
 	
-	image = Image.fromarray(x)
-	image.save("result.jpg")
+	# image = Image.fromarray(x)
+	x.save("result.jpg")
 	return send_file("result.jpg", mimetype='image/jpg')
 
 @app.route('/result')
