@@ -1,4 +1,4 @@
-from flask import Flask , render_template, request, send_file
+from flask import Flask , render_template, request, send_file, send_from_directory
 import os
 import matplotlib.pyplot as plt
 from style_transfer import *
@@ -36,16 +36,18 @@ def upload_file():
 	vgg = model()
 	target = stylize(content,style,vgg)
 	x = im_convert(target)
-	
-	PIL_image = Image.fromarray(x.astype('uint8'), 'RGB')
-	PIL_image.save("result.jpg")
+	plt.imsave(app.config['UPLOAD_FOLDER']+'/result.png',x)
+	return send_from_directory(app.config['UPLOAD_FOLDER'], "result.png", mimetype='image/png')
+	# PIL_image = Image.fromarray(x.astype('uint8'), 'RGB')
+	# PIL_image.save("result.jpg")
 
-	return send_file("result.jpg", mimetype='image/jpg')
+	# return send_file("result.jpg", mimetype='image/jpg')
 
 @app.route('/result')
 def get_res():
 	print("Hi from result") #sanity check
-	return send_file("result.jpg", mimetype='image/jpg')
+	return send_from_directory(app.config["UPLOAD_FOLDER"], "result.png", mimetype='image/png')
+	# return send_file("result.jpg", mimetype='image/jpg')
 							
 
 if __name__ =="__main__":
